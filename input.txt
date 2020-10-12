@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(int argc, const char* argv[]) {
+    int x = rand() % 100;
+
+    if (x < 50) {
+        printf("%d is less than 50\n", x);
+    } else if (x > 50) {
+        printf("%d is greater than 50\n", x);
+    } else {
+        printf("%d is equal to 50\n",x );
+    }
+
+    return 0;
+} 
