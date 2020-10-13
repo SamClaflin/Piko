@@ -1,15 +1,15 @@
-#include <stdio.h>
+func math(int x, int y, int z) {
+    const int CONST = 40
+    int denom = 50
 
-int main(int argc, const char* argv[]) {
-    int x = rand() % 100;
+    int result = (((x * y) % z) + CONST) / denom 
 
-    if (x < 50) {
-        printf("%d is less than 50\n", x);
-    } else if (x > 50) {
-        printf("%d is greater than 50\n", x);
-    } else {
-        printf("%d is equal to 50\n",x );
-    }
+    return result
+}
 
-    return 0;
-} 
+func main() {
+    int x = 10, y = 20, z = 30
+    print(math(x, y, z))
+}
+
+main()

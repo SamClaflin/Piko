@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall
-OBJECTS = main.o lexer.o token.o 
+OBJECTS = main.o lexer.o token.o parser.o
 TARGET =  main
 
 all: $(OBJECTS)
@@ -14,7 +14,9 @@ lexer.o: lexer/src/lexer.c lexer/include/lexer.h
 
 token.o: lexer/src/token.c lexer/include/token.h
 	$(CC) $(CFLAGS) -c lexer/src/token.c -o token.o
+	
+parser.o: parser/src/parser.c parser/include/parser.h
+	$(CC) $(CFLAGS) -c parser/src/parser.c -o parser.o
 
 clean:
 	rm *.o $(TARGET) 
-

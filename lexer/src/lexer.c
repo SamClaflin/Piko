@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/lexer.h"
-#include "../include/token.h"
 
 const int TOKEN_CAPACITY_DEFAULT = 10;
 
@@ -101,4 +100,28 @@ void lexer_readFile(LEXER hLexer, FILE* inFile) {
 
         lexer_pushChar(hLexer, currChar);
     }
+}
+
+TOKEN* lexer_getTokenArray(LEXER hLexer) {
+    if (!hLexer) { return NULL; }
+
+    Lexer* pLexer = (Lexer*)hLexer;
+
+    return pLexer->tokenArr;
+}
+
+int lexer_getNumTokens(LEXER hLexer) {
+    if (!hLexer) { return -1; }
+
+    Lexer* pLexer = (Lexer*)hLexer;
+
+    return pLexer->numTokens;
+}
+
+int lexer_getCapacity(LEXER hLexer) {
+    if (!hLexer) { return -1; }
+
+    Lexer* pLexer = (Lexer*)hLexer;
+
+    return pLexer->tokenCapacity;
 }

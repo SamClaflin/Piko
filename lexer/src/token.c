@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/token.h"
 
 const int IDENTIFIER_SIZE_DEFAULT = 10;
@@ -72,18 +73,18 @@ const char TOKEN_TABLE[][2] = {
     {'\\', 2},
 
     // Operators
-    {'=', 3},
-    {'+', 3},
-    {'-', 3},
-    {'/', 3},
-    {'*', 3},
-    {'.', 3},
-    {'!', 3},
-    {'>', 3},
-    {'<', 3},
-    {'&', 3},
-    {'|', 3},
-    {'%', 3},
+    {'=', OPERATOR_TYPE},
+    {'+', OPERATOR_TYPE},
+    {'-', OPERATOR_TYPE},
+    {'/', OPERATOR_TYPE},
+    {'*', OPERATOR_TYPE},
+    {'.', OPERATOR_TYPE},
+    {'!', OPERATOR_TYPE},
+    {'>', OPERATOR_TYPE},
+    {'<', OPERATOR_TYPE},
+    {'&', OPERATOR_TYPE},
+    {'|', OPERATOR_TYPE},
+    {'%', OPERATOR_TYPE},
 
     // Whitespace 
     {' ', 4},
@@ -115,6 +116,7 @@ typedef struct {
     int capacity;
     int size;
 } Token;
+
 
 TOKEN token_createToken() {
     Token* newToken = (Token*)malloc(sizeof(Token));
@@ -234,4 +236,22 @@ int token_getCharType(const char currChar) {
     }
 
     return -1;
+}
+
+int token_compare(TOKEN hToken, const char string[]) {
+    if (!hToken) { return -1; }
+
+    Token* pToken = (Token*)hToken;
+
+    if (pToken->size != strlen(string)) {
+        return 0;
+    }
+
+    for (int i = 0; i < pToken->size; ++i) {
+        if (string[i] != '\0' && pToken->identifier[i] != string[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
